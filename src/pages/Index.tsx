@@ -5,6 +5,7 @@ import SearchPanel from '@/components/SearchPanel';
 import ProfilePanel from '@/components/ProfilePanel';
 import TrendsPanel from '@/components/TrendsPanel';
 import NotificationsPanel from '@/components/NotificationsPanel';
+import MessagesPanel from '@/components/MessagesPanel';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -17,8 +18,8 @@ const Index = () => {
         return <SearchPanel />;
       case 'trends':
         return <TrendsPanel />;
-      case 'notifications':
-        return <NotificationsPanel />;
+      case 'messages':
+        return <MessagesPanel />;
       case 'profile':
         return <ProfilePanel />;
       default:

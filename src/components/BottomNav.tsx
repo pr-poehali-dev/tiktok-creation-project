@@ -10,7 +10,7 @@ const BottomNav = ({ activeTab, onTabChange }: BottomNavProps) => {
     { id: 'home', icon: 'Home', label: 'Главная' },
     { id: 'search', icon: 'Search', label: 'Поиск' },
     { id: 'create', icon: 'PlusSquare', label: 'Создать' },
-    { id: 'notifications', icon: 'Bell', label: 'Уведомления' },
+    { id: 'messages', icon: 'MessageSquare', label: 'Сообщения' },
     { id: 'profile', icon: 'User', label: 'Профиль' }
   ];
 

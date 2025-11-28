@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
+import CommentsSheet from './CommentsSheet';
 
 interface Video {
   id: number;
@@ -22,6 +23,7 @@ interface VideoCardProps {
 const VideoCard = ({ video, onSwipe, filterEffect }: VideoCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [showComments, setShowComments] = useState(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientY);
@@ -76,7 +78,10 @@ const VideoCard = ({ video, onSwipe, filterEffect }: VideoCardProps) => {
         </div>
 
         <div className="flex flex-col items-center gap-1">
-          <button className="hover:scale-110 transition-transform">
+          <button 
+            onClick={() => setShowComments(true)}
+            className="hover:scale-110 transition-transform"
+          >
             <Icon name="MessageCircle" size={36} />
           </button>
           <span className="text-xs font-medium">{formatNumber(video.comments)}</span>
@@ -120,6 +125,13 @@ const VideoCard = ({ video, onSwipe, filterEffect }: VideoCardProps) => {
           <Icon name="Search" size={24} />
         </button>
       </div>
+
+      <CommentsSheet
+        isOpen={showComments}
+        onClose={() => setShowComments(false)}
+        videoId={video.id}
+        commentsCount={video.comments}
+      />
     </div>
   );
 };
