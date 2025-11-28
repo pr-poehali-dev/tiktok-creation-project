@@ -6,6 +6,7 @@ import ProfilePanel from '@/components/ProfilePanel';
 import TrendsPanel from '@/components/TrendsPanel';
 import NotificationsPanel from '@/components/NotificationsPanel';
 import MessagesPanel from '@/components/MessagesPanel';
+import CreatePanel from '@/components/CreatePanel';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -16,8 +17,8 @@ const Index = () => {
         return <VideoFeed />;
       case 'search':
         return <SearchPanel />;
-      case 'trends':
-        return <TrendsPanel />;
+      case 'create':
+        return <CreatePanel />;
       case 'messages':
         return <MessagesPanel />;
       case 'profile':

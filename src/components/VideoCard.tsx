@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import CommentsSheet from './CommentsSheet';
+import VideoPlayer from './VideoPlayer';
 
 interface Video {
   id: number;
@@ -18,9 +19,10 @@ interface VideoCardProps {
   video: Video;
   onSwipe: (direction: 'up' | 'down') => void;
   filterEffect?: string | null;
+  isActive?: boolean;
 }
 
-const VideoCard = ({ video, onSwipe, filterEffect }: VideoCardProps) => {
+const VideoCard = ({ video, onSwipe, filterEffect, isActive = true }: VideoCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [showComments, setShowComments] = useState(false);
@@ -48,19 +50,17 @@ const VideoCard = ({ video, onSwipe, filterEffect }: VideoCardProps) => {
     return num.toString();
   };
 
-  const filterClass = filterEffect ? `filter-${filterEffect}` : '';
-
   return (
     <div 
       className="relative h-full w-full bg-black overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br from-purple-900/30 via-black to-cyan-900/30 ${filterClass}`}>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-full h-full bg-muted/20" />
-        </div>
-      </div>
+      <VideoPlayer 
+        videoUrl={video.videoUrl}
+        isActive={isActive}
+        filterEffect={filterEffect}
+      />
 
       <div className="absolute right-4 bottom-24 flex flex-col gap-6 z-10">
         <div className="flex flex-col items-center gap-1">

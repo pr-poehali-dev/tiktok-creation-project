@@ -58,6 +58,7 @@ const VideoFeed = () => {
           video={mockVideos[currentIndex]} 
           onSwipe={handleSwipe}
           filterEffect={selectedFilter}
+          isActive={true}
         />
       </div>
       
