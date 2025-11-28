@@ -1,12 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import VideoFeed from '@/components/VideoFeed';
+import BottomNav from '@/components/BottomNav';
+import SearchPanel from '@/components/SearchPanel';
+import ProfilePanel from '@/components/ProfilePanel';
+import TrendsPanel from '@/components/TrendsPanel';
+import NotificationsPanel from '@/components/NotificationsPanel';
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState('home');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home':
+        return <VideoFeed />;
+      case 'search':
+        return <SearchPanel />;
+      case 'trends':
+        return <TrendsPanel />;
+      case 'notifications':
+        return <NotificationsPanel />;
+      case 'profile':
+        return <ProfilePanel />;
+      default:
+        return <VideoFeed />;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="h-screen w-screen bg-background overflow-hidden relative">
+      {renderContent()}
+      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );
 };
